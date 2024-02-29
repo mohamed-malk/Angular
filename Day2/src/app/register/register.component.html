@@ -1,0 +1,97 @@
+<form class="row g-3 ps-5">
+  <div class="col-md-4">
+    <label for="name" class="form-label">Name</label>
+    <input
+      type="text"
+      name="name"
+      class="form-control"
+      id="name"
+      [(ngModel)]="name"
+      [ngClass]="{
+        'is-valid': NameCheck,
+        'is-invalid': !NameCheck
+      }"
+      required
+    />
+    <div class="valid-feedback">Looks good!</div>
+    <div class="invalid-feedback">Name must be greater than 3</div>
+  </div>
+  <div class="col-md-4">
+    <label for="age" class="form-label">Age</label>
+    <input
+      type="text"
+      class="form-control is-valid"
+      id="age"
+      name="age"
+      [(ngModel)]="age"
+      [ngClass]="{
+        'is-valid': AgeCheck,
+        'is-invalid': !AgeCheck
+      }"
+      required
+    />
+    <div class="valid-feedback">Looks good!</div>
+    <div class="invalid-feedback">Age must between 15 and 17</div>
+  </div>
+  <div class="col-md-4">
+    <label for="address" class="form-label">Address</label>
+    <select
+      [(ngModel)]="address"
+      [ngClass]="{
+        'is-valid': AddressCheck,
+        'is-invalid': !AddressCheck
+      }"
+      name="address"
+      class="form-select"
+      id="address"
+      required
+    >
+      <option *ngFor="let item of loc">{{ item }}</option>
+    </select>
+    <div class="valid-feedback">Looks good!</div>
+    <div class="invalid-feedback">Address must be not null</div>
+  </div>
+  <div class="col-md-4">
+    <label for="phone" class="form-label">Phone Number</label>
+    <input
+      type="text"
+      class="form-control"
+      id="phone"
+      name="phone"
+      [(ngModel)]="phone"
+      [ngClass]="{
+        'is-valid': PhoneCheck,
+        'is-invalid': !PhoneCheck
+      }"
+      required
+    />
+    <div class="valid-feedback">Looks good!</div>
+    <div class="invalid-feedback">
+      Phone must be 11 number and start with 010 | 014 | 015
+    </div>
+  </div>
+
+  <div class="col-12">
+    <button class="btn btn-primary" (click)="add()">Add</button>
+  </div>
+</form>
+
+<table class="table" *ngIf="studentList.length != 0">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Addess</th>
+      <th>Phone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let stu of studentList">
+      <td>{{ stu.name }}</td>
+      <td>{{ stu.age }}</td>
+      <td>{{ stu.address }}</td>
+      <td>{{ stu.phone }}</td>
+      <button class="btn bg-danger" (click)="remove(stu.id)">X</button>
+    </tr>
+  </tbody>
+</table>
