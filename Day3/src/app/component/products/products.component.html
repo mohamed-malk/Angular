@@ -1,0 +1,175 @@
+<div class="mt-5 d-flex flex-row-reverse col-8">
+  <h3
+    class="text-center bg-primary p-3 col-8 shadow"
+    style="border-radius: 20px"
+  >
+    Product Datas
+  </h3>
+</div>
+
+<form [formGroup]="form" class="row g-3 p-5">
+  <div class="col-md-6">
+    <label for="name" class="form-label">Name</label>
+    <input
+      (input)="nameValue(name.value)"
+      #name
+      [value]="product.name"
+      [formControlName]="Properties.Name"
+      type="text"
+      [name]="Properties.Name"
+      class="form-control"
+      id="name"
+      [ngClass]="{
+        'is-valid': NameControl?.valid,
+        'is-invalid': NameControl?.errors && NameControl?.touched
+      }"
+      required
+    />
+    <div class="valid-feedback">Looks good!</div>
+    <div class="invalid-feedback">
+      <ng-container *ngIf="NameControl?.hasError(Properties.minLength)">
+        Name must be at least 5 chars
+      </ng-container>
+      <ng-container *ngIf="NameControl?.hasError(Properties.required)">
+        Name is Requaired
+      </ng-container>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <label for="quan" class="form-label">Quantity</label>
+    <input
+      (input)="quantityValue(quantity.value)"
+      #quantity
+      [value]="product.quantity"
+      [formControlName]="Properties.Quantity"
+      type="text"
+      class="form-control is-valid"
+      id="quan"
+      [name]="Properties.Quantity"
+      [ngClass]="{
+        'is-valid': QuantityControl?.valid,
+        'is-invalid': QuantityControl?.errors && QuantityControl?.touched
+      }"
+      required
+    />
+    <div class="valid-feedback">Looks good!</div>
+    <div class="invalid-feedback">
+      <ng-container *ngIf="QuantityControl?.hasError(Properties.min)">
+        Quantity must be at least 5 chars
+      </ng-container>
+      <ng-container *ngIf="QuantityControl?.hasError(Properties.required)">
+        Quantity is Requaired
+      </ng-container>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <label for="cat" class="form-label">Category</label>
+    <input
+      (input)="categoryValue(category.value)"
+      #category
+      [value]="product.category"
+      [formControlName]="Properties.Category"
+      class="form-control"
+      id="cat"
+      [name]="Properties.Category"
+      [ngClass]="{
+        'is-valid': CategoryControl?.valid,
+        'is-invalid': CategoryControl?.errors && CategoryControl?.touched
+      }"
+      required
+    />
+    <div class="valid-feedback">Looks good!</div>
+    <div class="invalid-feedback">
+      <ng-container *ngIf="CategoryControl?.hasError(Properties.minLength)">
+        Category must be at least 4 chars
+      </ng-container>
+      <ng-container *ngIf="CategoryControl?.hasError(Properties.required)">
+        Category is Requaired
+      </ng-container>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <label for="price" class="form-label">Price</label>
+    <input
+      (input)="priceValue(price.value)"
+      #price
+      [value]="product.price"
+      [formControlName]="Properties.Price"
+      type="text"
+      class="form-control"
+      id="price"
+      [name]="Properties.Price"
+      [ngClass]="{
+        'is-valid': PriceControl?.valid,
+        'is-invalid': PriceControl?.errors && PriceControl?.touched
+      }"
+      required
+    />
+    <div class="valid-feedback">Looks good!</div>
+    <div class="invalid-feedback">
+      <ng-container *ngIf="PriceControl?.hasError(Properties.min)">
+        Price must be at least 100
+      </ng-container>
+      <ng-container *ngIf="PriceControl?.hasError(Properties.required)">
+        Price is Requaired
+      </ng-container>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <label for="dis" class="form-label">Discount</label>
+    <input
+      (input)="discounntValue(discount.value)"
+      #discount
+      [value]="product.discount"
+      [formControlName]="Properties.Discount"
+      type="text"
+      class="form-control"
+      id="dis"
+      [name]="Properties.Discount"
+      [ngClass]="{
+        'is-valid': DiscountControl?.valid,
+        'is-invalid': DiscountControl?.errors && DiscountControl?.touched
+      }"
+      required
+    />
+    <div class="valid-feedback">Looks good!</div>
+    <div class="invalid-feedback">
+      <ng-container *ngIf="DiscountControl?.hasError(Properties.max)">
+        Discount must be lowe than or equal 25
+      </ng-container>
+      <ng-container *ngIf="DiscountControl?.hasError(Properties.min)">
+        Discount must be higher than or equal 5
+      </ng-container>
+      <ng-container *ngIf="DiscountControl?.hasError(Properties.required)">
+        Discount is Requaired
+      </ng-container>
+    </div>
+  </div>
+  <div class="d-flex flex-row-reverse form-check form-switch col-md-12">
+    <div class="d-flex flex-row col-6">
+      <input
+        (input)="stateValue(state.checked)"
+        #state
+        [checked]="product.isInSale"
+        [formControlName]="Properties.IsSale"
+        class="form-check-input"
+        type="checkbox"
+        role="switch"
+        id="isSale"
+        [name]="Properties.IsSale"
+        [ngClass]="{
+          'is-valid': IsSaleControl?.valid,
+          'is-invalid': IsSaleControl?.errors && IsSaleControl?.touched
+        }"
+        required
+      />
+      <label class="form-check-label" for="isSale">Is Sale</label>
+      <div class="valid-feedback">Looks good!</div>
+      <div class="invalid-feedback">Is in Sale Requaired</div>
+    </div>
+  </div>
+
+  <div class="d-flex flex-row-reverse col-8">
+    <button class="p-2 col-8 btn btn-primary" (click)="add()">Add</button>
+  </div>
+</form>

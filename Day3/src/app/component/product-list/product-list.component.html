@@ -1,0 +1,28 @@
+<div class="d-flex flex-column">
+  <div class="p-5">
+    <table class="table text-center">
+      <thead>
+        <tr>
+          <th class="bg-warning">name</th>
+          <th class="bg-warning">quantity</th>
+          <th class="bg-warning">category</th>
+          <th class="bg-warning">discount</th>
+          <th class="bg-warning">price</th>
+          <th class="bg-warning">isInSale</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let prod of productList">
+          <td>{{ prod.name }}</td>
+          <td>{{ prod.quantity }}</td>
+          <td>{{ prod.category }}</td>
+          <td>{{ prod.discount }}</td>
+          <td>{{ prod.price }}</td>
+          <td>
+            <input disabled type="radio" [checked]="prod.isInSale" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
